@@ -2,6 +2,7 @@ import axios from 'axios'
 
 
 const token = localStorage.getItem("token")
+
 const URL = process.env.REACT_APP_BASE_URL
 
 const instance = axios.create({
@@ -14,7 +15,7 @@ const instance = axios.create({
 const login = async (data) => {
     try {
         const response = await axios.post(
-            URL + `user/login`, data
+            URL + `/user/login`, data
         )
         return response.data
 
@@ -26,7 +27,7 @@ const login = async (data) => {
 const signup = async (data) => {
     try {
         const response = await axios.post(
-            URL + `user/signup`, data
+            URL + `/user/signup`, data
         )
         return response.data
     } catch (err) {
@@ -38,7 +39,7 @@ const signup = async (data) => {
 const getAllUser = async () => {
     try {
         const response = await axios.get(
-            URL + `user/getAllUser`
+            URL + `/user/getAllUser`
         )
         return response.data
 
@@ -50,7 +51,7 @@ const getAllUser = async () => {
 const getSpecificUser = async () => {
     try {
         const response = await instance.get(
-            URL + `user/getSpecifiUser`
+            URL + `/user/getSpecifiUser`
         )
         return response.data
 
@@ -62,7 +63,7 @@ const getSpecificUser = async () => {
 const sendMessage = async (data) => {
     try {
         const response = await instance.post(
-            URL + `message/send`, data
+            URL + `/message/send`, data
         )
         return response.data
 
@@ -75,7 +76,7 @@ const sendMessage = async (data) => {
 const getMessages = async (id) => {
     try {
         const response = await instance.get(
-            URL + `message/getMesages/${id}`
+            URL + `/message/getMesages/${id}`
         )
         return response.data
 
