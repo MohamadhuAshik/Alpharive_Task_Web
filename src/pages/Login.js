@@ -48,7 +48,6 @@ const Login = () => {
                     <Grid align="center">
                         <Avatar>L</Avatar>
                         <Typography>Login</Typography>
-
                     </Grid>
 
                     <TextField value={email} onChange={(e) => setEmail(e.target.value)} variant='standard' label="Email" placeholder='Enter Email' required fullWidth />
