@@ -29,7 +29,6 @@ const signup = async (data) => {
             URL + `user/signup`, data
         )
         return response.data
-
     } catch (err) {
         console.log("err", err)
         throw err
