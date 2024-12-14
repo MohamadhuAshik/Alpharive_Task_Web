@@ -1,5 +1,5 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import DataContext from '../context/DataContext';
 
@@ -10,7 +10,7 @@ const UserDetails = () => {
 
     useEffect(() => {
         getMessages(id)
-    }, [sendMessage])
+    }, [])
 
     return (
         <>

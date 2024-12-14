@@ -89,10 +89,10 @@ const Home = () => {
 
     useEffect(() => {
         getAlluser()
+    }, [])
+    useEffect(() => {
         getSpecificUser()
     }, [])
-
-
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -111,7 +111,6 @@ const Home = () => {
                         <div className='d-flex flex-column'>
                             <Typography variant="h6" noWrap>
                                 {selectedUserName.toUpperCase()}
-
                             </Typography>
                             <Typography variant='caption'>{selectedUserMobile}</Typography>
                         </div>
@@ -149,7 +148,7 @@ const Home = () => {
                             <ListItem key={user.id} disablePadding>
                                 <ListItemButton onClick={() => handleUserClickWithHeading(user._id, user.name, user.mobile)}>
                                     <Avatar sx={{ mr: 2 }}>{user.name[0]}</Avatar>
-                                    <ListItemText primary={loginUserId === user._id ? "You" : user.name.toUpperCase()} />
+                                    <ListItemText primary={loginUserId === user._id ? "YOU" : user.name.toUpperCase()} />
                                 </ListItemButton>
                             </ListItem>
                         ))}

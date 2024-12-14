@@ -36,9 +36,7 @@ export const DataProvider = ({ children }) => {
             }
         })
     }
-    useEffect(() => {
-        getAlluser()
-    }, [])
+
 
     const handleUserClick = (id) => {
         navigate(`/user/${id}`)
