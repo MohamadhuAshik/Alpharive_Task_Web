@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Alpharive_Task_Web/static/css/main.ca67ef22.css",
-    "main.js": "/Alpharive_Task_Web/static/js/main.72bdbd72.js",
-    "index.html": "/Alpharive_Task_Web/index.html",
-    "main.ca67ef22.css.map": "/Alpharive_Task_Web/static/css/main.ca67ef22.css.map",
-    "main.72bdbd72.js.map": "/Alpharive_Task_Web/static/js/main.72bdbd72.js.map"
+    "main.css": "/static/css/main.ca67ef22.css",
+    "main.js": "/static/js/main.72bdbd72.js",
+    "index.html": "/index.html",
+    "main.ca67ef22.css.map": "/static/css/main.ca67ef22.css.map",
+    "main.72bdbd72.js.map": "/static/js/main.72bdbd72.js.map"
   },
   "entrypoints": [
     "static/css/main.ca67ef22.css",
