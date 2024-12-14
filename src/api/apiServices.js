@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const token = localStorage.getItem("token")
 
-const URL = `https://alpharive-task-server.vercel.app/`
+const URL = `https://alpharive-task-server.onrender.com/`
 console.log("URL", URL)
 
 const instance = axios.create({
