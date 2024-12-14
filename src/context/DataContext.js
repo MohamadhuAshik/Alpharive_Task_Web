@@ -73,7 +73,6 @@ export const DataProvider = ({ children }) => {
 
     const getMessages = (id) => {
         API_Services.getMessages(id).then((res) => {
-
             if (res.response_code === 200) {
                 setChat(res.data)
             }
