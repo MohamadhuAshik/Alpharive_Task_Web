@@ -4,6 +4,7 @@ import axios from 'axios'
 const token = localStorage.getItem("token")
 
 const URL = process.env.REACT_APP_BASE_URL
+console.log("URL", URL)
 
 const instance = axios.create({
     baseURL: URL,
