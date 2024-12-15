@@ -19,7 +19,7 @@ const UserDetails = () => {
 
                     {chat.map((item) => (
                         <Typography key={item._id} sx={{ marginBottom: 1 }}>
-                            <strong>{item.sender.name}:</strong> {item.content}
+                            <strong>{item.sender?.name}:</strong> {item.content}
                         </Typography>
                     ))}
                 </Box>

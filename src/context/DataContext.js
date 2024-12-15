@@ -67,6 +67,14 @@ export const DataProvider = ({ children }) => {
         API_Services.sendMessage(data).then((res) => {
             console.log(res)
             if (res.response_code === 200) {
+                setChat((prevChat) => [
+                    ...prevChat,
+                    {
+                        _id: Date.now(),
+                        sender: { name: loginUserName },
+                        content: message,
+                    },
+                ]);
                 setMessage("")
             }
         })
@@ -81,7 +89,7 @@ export const DataProvider = ({ children }) => {
     }
 
     return (
-        <DataContext.Provider value={{ isLogin, setIsLogin, getAlluser, users, handleUserClickWithHeading, selectedUserName, selectedUserMobile, getSpecificUser, loginUserName, loginUserEmail, sendMessage, message, setMessage, getMessages, chat, loginUserId }}>
+        <DataContext.Provider value={{ isLogin, setIsLogin, getAlluser, users, handleUserClickWithHeading, selectedUserName, selectedUserMobile, getSpecificUser, loginUserName, loginUserEmail, sendMessage, message, setMessage, getMessages, chat, loginUserId, setUsers, setLoginUsername, setLoginUserEmail, setLoginUserId }}>
             {children}
         </DataContext.Provider>
     )

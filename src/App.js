@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 
-import { Routes, Route, useNavigate, useParams } from "react-router-dom";
-import API_Services from '../src/api/apiServices'
+import { Routes, Route } from "react-router-dom";
+
 import Login from '../src/pages/Login'
 import Signup from '../src/pages/Signup'
 import Home from "./pages/Home";

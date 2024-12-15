@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const token = localStorage.getItem("token")
 
-const URL = `https://alpharive-task-server.onrender.com/`
+const URL = `https://alpharive-task-server.onrender.com/` || `http://localhost:4001/`
 console.log("URL", URL)
 
 const instance = axios.create({
@@ -55,7 +55,6 @@ const getSpecificUser = async () => {
             URL + `user/getSpecifiUser`
         )
         return response.data
-
     } catch (err) {
         console.log("err", err)
         throw err

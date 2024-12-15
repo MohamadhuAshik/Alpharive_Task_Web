@@ -72,7 +72,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const Home = () => {
-    const { setIsLogin, users, handleUserClickWithHeading, selectedUserName, selectedUserMobile, getAlluser, loginUserName, loginUserEmail, getSpecificUser, loginUserId } = useContext(DataContext)
+    const { isLogin, setIsLogin, users, handleUserClickWithHeading, selectedUserName, selectedUserMobile, getAlluser, loginUserName, loginUserEmail, getSpecificUser, loginUserId, setUsers, setLoginUsername, setLoginUserEmail, setLoginUserId } = useContext(DataContext)
 
     const navigate = useNavigate();
     const [open, setOpen] = useState(true);
@@ -84,6 +84,10 @@ const Home = () => {
     const handleLogout = () => {
         localStorage.clear();
         setIsLogin(false);
+        setUsers([])
+        setLoginUsername("")
+        setLoginUserEmail("")
+        setLoginUserId("")
         navigate("/");
     };
 
@@ -110,9 +114,9 @@ const Home = () => {
                         </IconButton>
                         <div className='d-flex flex-column'>
                             <Typography variant="h6" noWrap>
-                                {selectedUserName.toUpperCase()}
+                                {selectedUserName?.toUpperCase() || ""}
                             </Typography>
-                            <Typography variant='caption'>{selectedUserMobile}</Typography>
+                            <Typography variant='caption'>{selectedUserMobile || ""}</Typography>
                         </div>
                     </Toolbar>
                 </AppBar>
@@ -145,7 +149,7 @@ const Home = () => {
                     <Divider sx={{ borderWidth: 1, borderColor: 'black' }} />
                     <List className='mt-2'>
                         {users.map((user) => (
-                            <ListItem key={user.id} disablePadding>
+                            <ListItem key={user._id} disablePadding>
                                 <ListItemButton onClick={() => handleUserClickWithHeading(user._id, user.name, user.mobile)}>
                                     <Avatar sx={{ mr: 2 }}>{user.name[0]}</Avatar>
                                     <ListItemText primary={loginUserId === user._id ? "YOU" : user.name.toUpperCase()} />

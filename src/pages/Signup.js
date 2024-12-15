@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Avatar, Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material'
+import { Avatar, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, FormControlLabel, Grid, Paper, Slide, TextField, Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import API_Services from '../api/apiServices'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const Signup = () => {
     const [name, setName] = useState("")
@@ -13,6 +15,9 @@ const Signup = () => {
     const [mobile_error, setMobile_error] = useState(false)
     const navigate = useNavigate()
     const [password_error, setPassword_error] = useState("");
+    const [open, setOpen] = useState(false);
+    const [message, setMessages] = useState("")
+    const [Icon, setIcon] = useState(null)
 
     const validatePassword = (pass) => {
         const minLength = pass.length >= 8;
@@ -26,6 +31,13 @@ const Signup = () => {
         }
         return false;
     };
+
+
+
+    const handleClose = () => {
+        setOpen(false)
+        navigate("/")
+    }
 
     const handleSubmit = () => {
         const mobilePattern = /^[0-9]{10}$/;
@@ -42,27 +54,32 @@ const Signup = () => {
             SetEmail_error(true);
             return;
         }
-
         if (!mobilePattern.test(mobile)) {
             setMobile_error(true)
             return
         }
-
         if (!validatePassword(password)) {
             setPassword_error("Password must be at least 8 characters, include uppercase, lowercase, number, and a special character.");
             return;
         }
         const data = {
-            name: name, email: email, password: password, mobile: mobile
+            name: name,
+            email: email,
+            password: password,
+            mobile: mobile
         }
         API_Services.signup(data).then((res) => {
             console.log(res)
             if (res.response_code === 200) {
-                navigate("/")
+                setOpen(true)
+                setIcon(<CheckCircleIcon fontSize="large" color="success" />)
+                setMessages(res.message)
             }
         }).catch((err) => {
             console.log("errmessage", err)
-            alert(err.response.data.message)
+            setOpen(true)
+            setIcon(<CancelIcon fontSize='large' color='danger' />)
+            setMessages(err.response.data.message)
         })
     }
 
@@ -97,11 +114,34 @@ const Signup = () => {
 
                     <TextField style={{ margin: "8px 0px" }} value={password} onChange={(e) => setPassword(e.target.value)} variant='standard' type='password' error={password_error !== ""}
                         helperText={password_error} label="password" placeholder='Enter password' required fullWidth />
+
                     <FormControlLabel style={{ margin: "8px 0px" }}
                         control={<Checkbox />}
                         label="i accept terms and conditions"
                     />
                     <Button onClick={handleSubmit} style={{ margin: "8px 0px" }} variant="contained" fullWidth>Signup</Button>
+
+                    <Dialog
+                        maxWidth="xs"
+                        fullWidth
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+
+                        <DialogContent>
+                            <DialogContentText className='text-center' fontSize={20} id="alert-dialog-description">
+                                {Icon}
+                                <Typography variant='h6'>{message}</Typography>
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions className='d-flex justify-content-center'>
+                            <Button variant="contained" size="large" onClick={handleClose} autoFocus>
+                                OK
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                     <Typography style={{ margin: "8px 0px" }}>
                         Already have an account? <Link to="/">Login</Link>
                     </Typography>
