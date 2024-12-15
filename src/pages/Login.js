@@ -6,23 +6,14 @@ import DataContext from '../context/DataContext'
 
 const Login = () => {
     const { setIsLogin } = useContext(DataContext)
-    const [error, setError] = useState("");
-    const validateEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    };
+
+
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const handleLogin = () => {
-        if (!email || !password) {
-            setError("Email and Password are required.");
-            return;
-        }
-        if (!validateEmail(email)) {
-            setError("Invalid email format.");
-            return;
-        }
+
+
 
         const data = {
             email: email,
@@ -53,11 +44,7 @@ const Login = () => {
                     <TextField value={email} onChange={(e) => setEmail(e.target.value)} variant='standard' label="Email" placeholder='Enter Email' required fullWidth />
 
                     <TextField value={password} onChange={(e) => setPassword(e.target.value)} variant='standard' label="password" placeholder='Enter password' required fullWidth />
-                    {error && (
-                        <Typography color="error" style={{ fontSize: '14px' }}>
-                            {error}
-                        </Typography>
-                    )}
+
                     <FormControlLabel
                         control={<Checkbox />}
                         label="Remember Me"

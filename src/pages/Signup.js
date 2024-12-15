@@ -29,18 +29,25 @@ const Signup = () => {
 
     const handleSubmit = () => {
         const mobilePattern = /^[0-9]{10}$/;
+        const validateEmail = (email) => {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        };
         if (name === "") {
             SetName_error(true)
             return
         }
-        if (email === "") {
-            SetEmail_error(true)
-            return
+
+        if (!validateEmail(email)) {
+            SetEmail_error(true);
+            return;
         }
+
         if (!mobilePattern.test(mobile)) {
             setMobile_error(true)
             return
         }
+
         if (!validatePassword(password)) {
             setPassword_error("Password must be at least 8 characters, include uppercase, lowercase, number, and a special character.");
             return;
@@ -84,7 +91,7 @@ const Signup = () => {
 
                     />
 
-                    <TextField style={{ margin: "8px 0px" }} value={email} error={email_error} helperText={email_error ? "name Rquired" : ""} onChange={(e) => setEmail(e.target.value)} variant='standard' label="Email" placeholder='Enter Email' required fullWidth />
+                    <TextField style={{ margin: "8px 0px" }} value={email} error={email_error} helperText={email_error ? "Invalid email format" : ""} onChange={(e) => setEmail(e.target.value)} variant='standard' label="Email" placeholder='Enter Email' required fullWidth />
 
                     <TextField type='number' error={mobile_error} helperText={mobile_error ? "Enter a valid 10-digit mobile numbe" : ""} style={{ margin: "8px 0px" }} value={mobile} onChange={(e) => setMobile(e.target.value)} variant='standard' label="Mobile" placeholder='Enter Mobile Number' required fullWidth />
 

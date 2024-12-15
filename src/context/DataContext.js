@@ -49,6 +49,7 @@ export const DataProvider = ({ children }) => {
     };
 
     const getSpecificUser = () => {
+
         API_Services.getSpecificUser().then((res) => {
             console.log(res)
             if (res.response_code === 200) {

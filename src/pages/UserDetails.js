@@ -10,7 +10,7 @@ const UserDetails = () => {
 
     useEffect(() => {
         getMessages(id)
-    }, [])
+    }, [id])
 
     return (
         <>
